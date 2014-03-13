@@ -12,3 +12,5 @@ AUDIO:
 - System audio (intercepts the sound as it is leaving your computer. Able to even record sounds when listening to a song with headphones)
 - Microphone
 - None
+
+These will be able to mixed and matched however you want.
