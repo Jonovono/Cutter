@@ -14,6 +14,7 @@
     NSStatusItem *statusItem;
     
     NSArray *audioOptionsArray;
+    BOOL *recording;
 }
 
 // Menu properties
@@ -40,6 +41,7 @@
 - (IBAction)audioSpeakerSelected:(id)sender;
 - (IBAction)audioMicrophoneSelected:(id)sender;
 - (IBAction)audioNoneSelected:(id)sender;
+- (IBAction)startRecording:(id)sender;
 
 
 

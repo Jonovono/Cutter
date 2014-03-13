@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170C5AE318D01CCA008D3543 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 170C5AD018D01CCA008D3543 /* AppController.mm */; };
+		170C5AE418D01CCA008D3543 /* AudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 170C5AD118D01CCA008D3543 /* AudioDevice.cpp */; };
+		170C5AE518D01CCA008D3543 /* AudioTee.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 170C5AD318D01CCA008D3543 /* AudioTee.cpp */; };
+		170C5AE618D01CCA008D3543 /* CARingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 170C5AD518D01CCA008D3543 /* CARingBuffer.cpp */; };
+		170C5AE818D01CCA008D3543 /* kill_recorders.sh in Resources */ = {isa = PBXBuildFile; fileRef = 170C5ADE18D01CCA008D3543 /* kill_recorders.sh */; };
+		170C5AE918D01CCA008D3543 /* record.sh in Resources */ = {isa = PBXBuildFile; fileRef = 170C5ADF18D01CCA008D3543 /* record.sh */; };
+		170C5AEA18D01CCA008D3543 /* sox in Resources */ = {isa = PBXBuildFile; fileRef = 170C5AE018D01CCA008D3543 /* sox */; };
+		170C5AEB18D01CCA008D3543 /* WavFileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 170C5AE118D01CCA008D3543 /* WavFileUtils.cpp */; };
+		170C5AED18D01D17008D3543 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170C5AEC18D01D17008D3543 /* AudioToolbox.framework */; };
+		170C5AF118D01D31008D3543 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170C5AF018D01D31008D3543 /* IOKit.framework */; };
+		170C5AF218D01D3F008D3543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172BE64518C91CBD003DEBC5 /* Foundation.framework */; };
+		170C5AF318D01D44008D3543 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172BE64318C91CBD003DEBC5 /* AppKit.framework */; };
+		170C5AFB18D02064008D3543 /* CARingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 170C5AF918D02064008D3543 /* CARingBuffer.cpp */; };
+		170C5AFC18D02144008D3543 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170C5AEE18D01D24008D3543 /* CoreAudio.framework */; };
 		172BE64118C91CBD003DEBC5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172BE64018C91CBD003DEBC5 /* Cocoa.framework */; };
 		172BE64B18C91CBD003DEBC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 172BE64918C91CBD003DEBC5 /* InfoPlist.strings */; };
 		172BE64D18C91CBD003DEBC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 172BE64C18C91CBD003DEBC5 /* main.m */; };
@@ -18,6 +32,11 @@
 		172BE66118C91CBD003DEBC5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172BE64018C91CBD003DEBC5 /* Cocoa.framework */; };
 		172BE66918C91CBD003DEBC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 172BE66718C91CBD003DEBC5 /* InfoPlist.strings */; };
 		172BE66B18C91CBD003DEBC5 /* CutterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 172BE66A18C91CBD003DEBC5 /* CutterTests.m */; };
+		1737A59418D17270003B1787 /* ffmpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1737A59318D17270003B1787 /* ffmpeg */; };
+		1737A59918D17428003B1787 /* test.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1737A59718D17428003B1787 /* test.wav */; };
+		1737A59B18D17449003B1787 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1737A59A18D17449003B1787 /* test.mov */; };
+		1737A59E18D178AC003B1787 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1737A59D18D178AC003B1787 /* Utilities.m */; };
+		174BE77C18D16B3B0072B158 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174BE77B18D16B3B0072B158 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +50,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		170C5ACF18D01CCA008D3543 /* AppController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppController.hpp; sourceTree = "<group>"; };
+		170C5AD018D01CCA008D3543 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
+		170C5AD118D01CCA008D3543 /* AudioDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioDevice.cpp; sourceTree = "<group>"; };
+		170C5AD218D01CCA008D3543 /* AudioDevice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioDevice.hpp; sourceTree = "<group>"; };
+		170C5AD318D01CCA008D3543 /* AudioTee.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioTee.cpp; sourceTree = "<group>"; };
+		170C5AD418D01CCA008D3543 /* AudioTee.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioTee.hpp; sourceTree = "<group>"; };
+		170C5AD518D01CCA008D3543 /* CARingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CARingBuffer.cpp; sourceTree = "<group>"; };
+		170C5AD618D01CCA008D3543 /* CARingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CARingBuffer.h; sourceTree = "<group>"; };
+		170C5ADE18D01CCA008D3543 /* kill_recorders.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_recorders.sh; sourceTree = "<group>"; };
+		170C5ADF18D01CCA008D3543 /* record.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = record.sh; sourceTree = "<group>"; };
+		170C5AE018D01CCA008D3543 /* sox */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sox; sourceTree = "<group>"; };
+		170C5AE118D01CCA008D3543 /* WavFileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WavFileUtils.cpp; sourceTree = "<group>"; };
+		170C5AE218D01CCA008D3543 /* WavFileUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WavFileUtils.hpp; sourceTree = "<group>"; };
+		170C5AEC18D01D17008D3543 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		170C5AEE18D01D24008D3543 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		170C5AF018D01D31008D3543 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		170C5AF618D02064008D3543 /* CAAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAtomic.h; sourceTree = "<group>"; };
+		170C5AF718D02064008D3543 /* CAAutoDisposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAutoDisposer.h; sourceTree = "<group>"; };
+		170C5AF818D02064008D3543 /* CABitOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABitOperations.h; sourceTree = "<group>"; };
+		170C5AF918D02064008D3543 /* CARingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CARingBuffer.cpp; sourceTree = "<group>"; };
+		170C5AFA18D02064008D3543 /* CARingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CARingBuffer.h; sourceTree = "<group>"; };
 		172BE63D18C91CBD003DEBC5 /* Cutter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cutter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		172BE64018C91CBD003DEBC5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		172BE64318C91CBD003DEBC5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -50,6 +90,12 @@
 		172BE66618C91CBD003DEBC5 /* CutterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CutterTests-Info.plist"; sourceTree = "<group>"; };
 		172BE66818C91CBD003DEBC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		172BE66A18C91CBD003DEBC5 /* CutterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CutterTests.m; sourceTree = "<group>"; };
+		1737A59318D17270003B1787 /* ffmpeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ffmpeg; sourceTree = "<group>"; };
+		1737A59718D17428003B1787 /* test.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = test.wav; sourceTree = "<group>"; };
+		1737A59A18D17449003B1787 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test.mov; sourceTree = "<group>"; };
+		1737A59C18D178AC003B1787 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		1737A59D18D178AC003B1787 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		174BE77B18D16B3B0072B158 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +103,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				174BE77C18D16B3B0072B158 /* AVFoundation.framework in Frameworks */,
+				170C5AFC18D02144008D3543 /* CoreAudio.framework in Frameworks */,
+				170C5AF318D01D44008D3543 /* AppKit.framework in Frameworks */,
+				170C5AF218D01D3F008D3543 /* Foundation.framework in Frameworks */,
+				170C5AF118D01D31008D3543 /* IOKit.framework in Frameworks */,
+				170C5AED18D01D17008D3543 /* AudioToolbox.framework in Frameworks */,
 				172BE64118C91CBD003DEBC5 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +125,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		170C5ACE18D01CB9008D3543 /* WavTap */ = {
+			isa = PBXGroup;
+			children = (
+				170C5AF418D02064008D3543 /* CoreAudio */,
+				170C5ACF18D01CCA008D3543 /* AppController.hpp */,
+				170C5AD018D01CCA008D3543 /* AppController.mm */,
+				170C5AD118D01CCA008D3543 /* AudioDevice.cpp */,
+				170C5AD218D01CCA008D3543 /* AudioDevice.hpp */,
+				170C5AD318D01CCA008D3543 /* AudioTee.cpp */,
+				170C5AD418D01CCA008D3543 /* AudioTee.hpp */,
+				170C5AD518D01CCA008D3543 /* CARingBuffer.cpp */,
+				170C5AD618D01CCA008D3543 /* CARingBuffer.h */,
+				170C5ADE18D01CCA008D3543 /* kill_recorders.sh */,
+				170C5ADF18D01CCA008D3543 /* record.sh */,
+				170C5AE018D01CCA008D3543 /* sox */,
+				170C5AE118D01CCA008D3543 /* WavFileUtils.cpp */,
+				170C5AE218D01CCA008D3543 /* WavFileUtils.hpp */,
+				1737A59A18D17449003B1787 /* test.mov */,
+				1737A59718D17428003B1787 /* test.wav */,
+				1737A59318D17270003B1787 /* ffmpeg */,
+			);
+			name = WavTap;
+			sourceTree = "<group>";
+		};
+		170C5AF418D02064008D3543 /* CoreAudio */ = {
+			isa = PBXGroup;
+			children = (
+				170C5AF518D02064008D3543 /* PublicUtility */,
+			);
+			path = CoreAudio;
+			sourceTree = "<group>";
+		};
+		170C5AF518D02064008D3543 /* PublicUtility */ = {
+			isa = PBXGroup;
+			children = (
+				170C5AF618D02064008D3543 /* CAAtomic.h */,
+				170C5AF718D02064008D3543 /* CAAutoDisposer.h */,
+				170C5AF818D02064008D3543 /* CABitOperations.h */,
+				170C5AF918D02064008D3543 /* CARingBuffer.cpp */,
+				170C5AFA18D02064008D3543 /* CARingBuffer.h */,
+			);
+			path = PublicUtility;
+			sourceTree = "<group>";
+		};
 		172BE63418C91CBD003DEBC5 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +191,10 @@
 		172BE63F18C91CBD003DEBC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				174BE77B18D16B3B0072B158 /* AVFoundation.framework */,
+				170C5AF018D01D31008D3543 /* IOKit.framework */,
+				170C5AEE18D01D24008D3543 /* CoreAudio.framework */,
+				170C5AEC18D01D17008D3543 /* AudioToolbox.framework */,
 				172BE64018C91CBD003DEBC5 /* Cocoa.framework */,
 				172BE65F18C91CBD003DEBC5 /* XCTest.framework */,
 				172BE64218C91CBD003DEBC5 /* Other Frameworks */,
@@ -115,11 +215,15 @@
 		172BE64618C91CBD003DEBC5 /* Cutter */ = {
 			isa = PBXGroup;
 			children = (
+				1737A59518D1741A003B1787 /* TestResources */,
+				170C5ACE18D01CB9008D3543 /* WavTap */,
 				172BE65218C91CBD003DEBC5 /* MainViewAppDelegate.h */,
 				172BE65318C91CBD003DEBC5 /* MainViewAppDelegate.m */,
 				172BE65518C91CBD003DEBC5 /* MainMenu.xib */,
 				172BE65818C91CBD003DEBC5 /* Images.xcassets */,
 				172BE64718C91CBD003DEBC5 /* Supporting Files */,
+				1737A59C18D178AC003B1787 /* Utilities.h */,
+				1737A59D18D178AC003B1787 /* Utilities.m */,
 			);
 			path = Cutter;
 			sourceTree = "<group>";
@@ -152,6 +256,13 @@
 				172BE66718C91CBD003DEBC5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1737A59518D1741A003B1787 /* TestResources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TestResources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,9 +342,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1737A59918D17428003B1787 /* test.wav in Resources */,
 				172BE64B18C91CBD003DEBC5 /* InfoPlist.strings in Resources */,
+				170C5AE918D01CCA008D3543 /* record.sh in Resources */,
 				172BE65918C91CBD003DEBC5 /* Images.xcassets in Resources */,
+				1737A59418D17270003B1787 /* ffmpeg in Resources */,
+				170C5AEA18D01CCA008D3543 /* sox in Resources */,
+				1737A59B18D17449003B1787 /* test.mov in Resources */,
 				172BE65118C91CBD003DEBC5 /* Credits.rtf in Resources */,
+				170C5AE818D01CCA008D3543 /* kill_recorders.sh in Resources */,
 				172BE65718C91CBD003DEBC5 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,8 +370,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				170C5AEB18D01CCA008D3543 /* WavFileUtils.cpp in Sources */,
+				170C5AE518D01CCA008D3543 /* AudioTee.cpp in Sources */,
+				170C5AE318D01CCA008D3543 /* AppController.mm in Sources */,
+				1737A59E18D178AC003B1787 /* Utilities.m in Sources */,
 				172BE65418C91CBD003DEBC5 /* MainViewAppDelegate.m in Sources */,
+				170C5AE618D01CCA008D3543 /* CARingBuffer.cpp in Sources */,
+				170C5AE418D01CCA008D3543 /* AudioDevice.cpp in Sources */,
 				172BE64D18C91CBD003DEBC5 /* main.m in Sources */,
+				170C5AFB18D02064008D3543 /* CARingBuffer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +507,7 @@
 		172BE66F18C91CBD003DEBC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -396,6 +521,7 @@
 		172BE67018C91CBD003DEBC5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -465,6 +591,7 @@
 				172BE67018C91CBD003DEBC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		172BE67118C91CBD003DEBC5 /* Build configuration list for PBXNativeTarget "CutterTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +600,7 @@
 				172BE67318C91CBD003DEBC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

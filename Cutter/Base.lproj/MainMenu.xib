@@ -662,6 +662,7 @@
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
+        <customObject id="pVK-qf-xH5" customClass="AppController"/>
         <menu id="qrl-dJ-GHb">
             <items>
                 <menuItem title="Audio Input" id="nEt-Aa-N9D">
@@ -674,13 +675,13 @@
                                     <action selector="audioSpeakerSelected:" target="494" id="MpA-NQ-nl2"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Microphone" id="47L-Ro-odj">
+                            <menuItem title="Microphone" hidden="YES" id="47L-Ro-odj">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="audioMicrophoneSelected:" target="494" id="uW4-c5-Chk"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="None" id="RgH-ta-cIP">
+                            <menuItem title="None" hidden="YES" id="RgH-ta-cIP">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="audioNoneSelected:" target="494" id="i9L-Mc-EWp"/>
@@ -699,10 +700,10 @@
                             <menuItem title="Screen Selection" id="Z4M-0Y-u3q">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Webcam" id="keX-6v-R5T">
+                            <menuItem title="Webcam" hidden="YES" id="keX-6v-R5T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="None" id="xsL-ue-ula">
+                            <menuItem title="None" hidden="YES" id="xsL-ue-ula">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                         </items>
@@ -717,6 +718,9 @@
                 </menuItem>
                 <menuItem title="Record" id="Kgb-jD-Et6">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="startRecording:" target="494" id="hS4-zg-Col"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="scd-Ls-L8B"/>
                 <menuItem title="Quit Clipper" id="lqs-3s-m9c">
