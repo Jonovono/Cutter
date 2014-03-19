@@ -10,6 +10,8 @@ else
 fi
 recorder_process='WavTap.app/Contents/SharedSupport/sox'
 pid=`ps -axo pid,command,args | grep $recorder_process | grep -v grep | awk '{ print $1 }'`
+echo "otaehus"
+echo "$pid"
 if [[ -z $pid ]]; then
   $DIR/sox -V6 -t coreaudio 'WavTap' $bits $output_file
 fi

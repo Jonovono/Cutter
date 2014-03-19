@@ -7,6 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "DrawMouseBoxView.h"
+#import <QTKit/QTKit.h>
+#import <Carbon/Carbon.h>
+#import "Recorder.h"
 
 @interface MainViewAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
@@ -14,10 +18,31 @@
     NSStatusItem *statusItem;
     
     NSArray *audioOptionsArray;
+    NSArray *videoOptionsArray;
     BOOL *recording;
+    NSTask *task;
+    NSWindow *overlayWindow;
+    DrawMouseBoxView* drawMouseBoxView;
+    
+    NSRect selectionRect;
+    
+    
+    EventHandlerUPP recordHotKeyFunction;
+    
+    // 0 = speaker, 1 = microphone, 2 = none
+    int currentAudio;
+    
+    // 0 = fullscreen, 1 = selection, 2 = webcam, 3 = none.
+    int currentVideo;
+    
+    Recorder *recorder;
 }
 
 // Menu properties
+
+//Used to inform what is currently selected.
+@property (weak) IBOutlet NSMenuItem *currentlySelectedStatus;
+
 
 @property (weak) IBOutlet NSMenuItem *quitAppMenuButton;
 @property (weak) IBOutlet NSMenuItem *audioSpeaker;
@@ -43,6 +68,8 @@
 - (IBAction)audioNoneSelected:(id)sender;
 - (IBAction)startRecording:(id)sender;
 
+
+- (IBAction)videoNoneSelected:(id)sender;
 
 
 @property (assign) IBOutlet NSWindow *window;

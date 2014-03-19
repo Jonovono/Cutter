@@ -7,35 +7,35 @@
 //
 
 #import "MainViewAppDelegate.h"
+#import "ScreenRecorder.h"
+#include <Carbon/Carbon.h>
+#include "Recorder.h"
+
+#define LogRect(RECT) NSLog(@"%s: (%0.0f, %0.0f) %0.0f x %0.0f", #RECT, RECT.origin.x, RECT.origin.y, RECT.size.width, RECT.size.height)
 
 @implementation MainViewAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-//    NSLog(@"LOAAAAAAAAAAAAAAAAAAAAAAAAd");
-//    // Insert code here to initialize your application
-//    audioOptionsArray = [[NSArray alloc] initWithObjects:self.audioSpeaker,
-//                                  self.audioMicrophone,
-//                                  self.audioNone, nil];
-//    NSLog(@"AUD %@", audioOptionsArray);
-    
-}
+{}
 
 -(void)awakeFromNib {
     [self createCutsDesktopFolder];
     recording = NO;
     
-//    [self runScript:@"ps"];
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    [statusItem setMenu:statusMenu];
-    [statusItem setTitle:@"Cutter"];
-    [statusItem setHighlightMode:YES];
-    
-    // Insert code here to initialize your application
+    // INIT the arrays
     audioOptionsArray = [[NSArray alloc] initWithObjects:self.audioSpeaker,
                          self.audioMicrophone,
                          self.audioNone, nil];
+    videoOptionsArray = [[NSArray alloc] initWithObjects:self.videoFullScreen, self.videoScreenSelection,
+                         self.videoWebcam, self.videoNone,nil];
+    
+    
+    [self setupStatusBar];
+    [self bindHotKeys];
+    [self initDefaults];
+    
 }
+
 
 
 - (IBAction)quitApp:(id)sender {
@@ -43,39 +43,135 @@
 }
 
 - (IBAction)screenSelection:(id)sender {
+    int windowLevel = CGShieldingWindowLevel();
+    NSRect windowRect = [[NSScreen mainScreen] frame];
+    
+    DrawMouseBoxView *tempWind;
+    
+    //    windowRect.size.height = windowRect.size.height - 20;
+    if (overlayWindow) {
+        NSLog(@"OVERLAY ALREADY DEFINED");
+        NSLog(@"OV: %@", overlayWindow);
+        [overlayWindow makeKeyAndOrderFront:self];
+        tempWind = [[DrawMouseBoxView alloc] initWithFrame:windowRect];
+        tempWind.delegate = self;
+        [overlayWindow setContentView:tempWind];
+    } else {
+    overlayWindow = [[NSWindow alloc] initWithContentRect:windowRect
+                                                styleMask:NSBorderlessWindowMask
+                                                  backing:NSBackingStoreBuffered
+                                                    defer:NO
+                                                   screen:[NSScreen mainScreen]];
+    
+    
+    [overlayWindow setReleasedWhenClosed:YES];
+    [overlayWindow setLevel:windowLevel];
+    [overlayWindow setBackgroundColor:[NSColor colorWithCalibratedRed:0.0
+                                                                green:0.0
+                                                                 blue:0.0
+                                                                alpha:0.5]];
+    [overlayWindow setAlphaValue:0.5];
+    [overlayWindow setOpaque:NO];
+    [overlayWindow setIgnoresMouseEvents:NO];
+    [overlayWindow makeKeyAndOrderFront:nil];
+    
+    drawMouseBoxView = [[DrawMouseBoxView alloc] initWithFrame:windowRect];
+    drawMouseBoxView.delegate = self;
+    [overlayWindow setContentView:drawMouseBoxView];
+    }
 }
 
+#define kShadyWindowLevel   (NSDockWindowLevel + 1000)
+
+- (void)doneDoingStuff {
+//    [overlayWindow close];
+    [overlayWindow orderOut:self];
+//    [overlayWindow performClose:nil];
+//    drawMouseBoxView = NULL;
+//    overlayWindow = NULL;
+//        NSLog(@"OVERLAY %@", overlayWindow);
+    
+//    for (NSWindow* w in [NSApp windows])
+//	{
+//		if ([w level] == kShadyWindowLevel)
+//			[w close];
+//	}
+}
+
+- (void)drawMouseBoxView:(DrawMouseBoxView*)view didSelectRect:(NSRect)rect {
+    selectionRect = rect;
+    LogRect(selectionRect);
+}
+
+
 - (IBAction)audioSpeakerSelected:(id)sender {
-    [self resetAudioOptionMenusToStateOff];
-    [sender setState: NSOnState];
+    currentAudio = 0;
+    [self updateRecordingSelections];
 }
 
 - (IBAction)audioMicrophoneSelected:(id)sender {
-    [self resetAudioOptionMenusToStateOff];
-    [sender setState: NSOnState];
+    currentAudio = 1;
+    [self updateRecordingSelections];
 }
 
 - (IBAction)audioNoneSelected:(id)sender {
-    [self resetAudioOptionMenusToStateOff];
-    [sender setState: NSOnState];
+    currentAudio = 2;
+    [self updateRecordingSelections];
+}
+
+- (IBAction)videoEntireScreenSelected:(id)sender {
+    currentVideo = 0;
+    [self updateRecordingSelections];
+}
+
+- (IBAction)videoScreenSelectionSelected:(id)sender {
+    currentVideo = 1;
+    [self updateRecordingSelections];
+}
+
+- (IBAction)videoWebcamSelected:(id)sender {
+    currentVideo = 2;
+    [self updateRecordingSelections];
+}
+
+- (IBAction)videoNoneSelected:(id)sender {
+    currentVideo = 3;
+    [self updateRecordingSelections];
+}
+
+
+-(void)record {
+    LogRect(selectionRect);
+    if (currentVideo == 1) {
+        recorder = [[Recorder alloc] initWithAudio:currentAudio andVideo:currentVideo andScreenRect:selectionRect];
+    } else {
+        recorder = [[Recorder alloc] initWithAudio:currentAudio andVideo:currentVideo andScreenRect:NSZeroRect];
+    }
+    [recorder record];
+}
+
+-(void)stopRecording {
+    [recorder stop];
 }
 
 - (IBAction)startRecording:(id)sender {
     if (recording) {
-        NSLog(@"RECORDING STOP");
         recording = NO;
-        [self killRecordProcesses];
-
+        [self stopRecording];
     } else {
-        NSLog(@"NOT RECORDING, start it");
         recording = YES;
-        [self launchRecordProcess];
+        [self record];
     }
-//    AppController *ac = [[AppController alloc] init];
 }
 
 - (void)resetAudioOptionMenusToStateOff {
     for (id object in audioOptionsArray) {
+        [object setState:NSOffState];
+    }
+}
+
+- (void)resetVideoOptionMenusToStateOff {
+    for (id object in videoOptionsArray) {
         [object setState:NSOffState];
     }
 }
@@ -148,29 +244,181 @@
     NSLog(@"Error: Create folder failed %@", cutsDir);
 }
 
+- (void)initDefaults {
+    currentAudio = 0;  //Default audio = Speaker
+    currentVideo = 1;  // Default video = Screen selection
+    [self updateRecordingSelections];
+}
+
+- (void)updateRecordingSelections {
+    [self resetAudioOptionMenusToStateOff];
+    [self resetVideoOptionMenusToStateOff];
+    
+    [[audioOptionsArray objectAtIndex:currentAudio] setState:NSOnState];
+    [[videoOptionsArray objectAtIndex:currentVideo] setState:NSOnState];
+
+    
+    //    If screen selection
+    if (currentVideo == 1) {
+        [self.recordToggle setHidden:YES];
+        [self.selectScreen setHidden:NO];
+    } else {
+        [self.recordToggle setHidden:NO];
+        [self.selectScreen setHidden:YES];
+    }
+    
+    if (currentVideo == 3 && currentAudio == 2) {
+        [self.recordToggle setHidden:YES];
+        [self.selectScreen setHidden:YES];
+    }
+    
+    [self updateStatusMessage];
+    
+}
+
+-(void)updateStatusMessage {
+    NSString *msg = @"";
+    
+    switch (currentAudio) {
+        case 0:
+            msg = [msg stringByAppendingString:@"Internal / "];
+            break;
+        case 1:
+            msg = [msg stringByAppendingString:@"Microphone / "];
+            break;
+        case 2:
+            msg = [msg stringByAppendingString:@"None / "];
+            break;
+        default:
+            break;
+    }
+    
+    switch (currentVideo) {
+        case 0:
+            msg = [msg stringByAppendingString:@"Full Screen"];
+            break;
+        case 1:
+            msg = [msg stringByAppendingString:@"Screen Selection"];
+            break;
+        case 2:
+            msg = [msg stringByAppendingString:@"Webcam"];
+            break;
+        case 3:
+            msg = [msg stringByAppendingString:@"None"];
+            break;
+        default:
+            break;
+    }
+    
+    [self.currentlySelectedStatus setTitle:msg];
+}
+
+- (NSString *)getNewPath {
+    NSString *cutsDir = @"~/Desktop/Cuts/test.wav";
+    cutsDir = [cutsDir stringByExpandingTildeInPath];
+    return cutsDir;
+}
+
 - (void)launchRecordProcess {
+//    NSString *sharedSupportPath = [[NSBundle mainBundle] resourcePath];
+//    NSString *scriptName = @"record";
+//    NSString *scriptExtension = @"sh";
+//    NSString *scriptAbsPath = [NSString stringWithFormat:@"%@/%@.%@", sharedSupportPath, scriptName, scriptExtension];
+//    //NSString *bits = [NSString stringWithFormat:@"%d", mEngine->mOutputDevice.getStreamPhysicalBitDepth(false)];
+//    NSTask *task=[[NSTask alloc] init];
+//    //NSArray *argv=[NSArray arrayWithObject:bits];
+//    //[task setArguments: argv];
+//    [task setLaunchPath:scriptAbsPath];
+//    [task launch];
+    
+    NSLog(@"KILLEM");
+
     NSString *sharedSupportPath = [[NSBundle mainBundle] resourcePath];
-    NSString *scriptName = @"record";
-    NSString *scriptExtension = @"sh";
-    NSString *scriptAbsPath = [NSString stringWithFormat:@"%@/%@.%@", sharedSupportPath, scriptName, scriptExtension];
-    //NSString *bits = [NSString stringWithFormat:@"%d", mEngine->mOutputDevice.getStreamPhysicalBitDepth(false)];
-    NSTask *task=[[NSTask alloc] init];
-    //NSArray *argv=[NSArray arrayWithObject:bits];
-    //[task setArguments: argv];
-    [task setLaunchPath:scriptAbsPath];
-    [task launch];
+    NSString *scriptName = @"sox";
+    NSString *scriptAbsPath = [NSString stringWithFormat:@"%@/%@", sharedSupportPath, scriptName];
+//    //NSString *bits = [NSString stringWithFormat:@"%d", mEngine->mOutputDevice.getStreamPhysicalBitDepth(false)];
+//    NSTask *task=[[NSTask alloc] init];
+//    //NSArray *argv=[NSArray arrayWithObject:bits];
+//    //[task setArguments: argv];
+//    
+////    $DIR/sox -V6 -t coreaudio 'WavTap' $bits $output_file
+//    NSString *testOut = @"~/Desktop/out.wav";
+//    testOut = [testOut stringByExpandingTildeInPath];
+//    
+//    [task setArguments:@[@"-V6", @"coreaudio", @"WavTap", testOut]];
+//    [task setLaunchPath:scriptAbsPath];
+//    [task launch];
+    
+    NSString *outputFile = [self getNewPath];
+
+    
+    NSArray *args = [NSArray arrayWithObjects:@"-V6", @"-t", @"coreaudio", @"WavTap", @"--bits", @"16", outputFile, nil];
+    task = [[NSTask alloc] init];
+    @try {
+        [task setLaunchPath:scriptAbsPath];
+        [task setArguments:args];
+        [task launch];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@",exception.reason);
+    }
+    @finally {
+//        [task release];
+    }
+
+
+}
+
+-(void)setupStatusBar {
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    NSImage *image = [NSImage imageNamed:@"cutter.png"];
+    [image setTemplate:YES];
+    [statusItem setImage:image];
+    [statusItem setToolTip:@"CUTTER"];
+    [statusItem setHighlightMode:YES];
+    [statusItem setMenu:statusMenu];
+    //    [statusItem setTitle:@"Cutter"];
+    [statusItem setHighlightMode:YES];
+}
+
+// Set up hot keys
+
+OSStatus recordHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) {
+    MainViewAppDelegate* inUserData = (__bridge MainViewAppDelegate*)userData;
+    [inUserData poop];
+    return noErr;
+}
+
+-(void)poop {
+    NSLog(@"poop");
+}
+
+
+- (void)bindHotKeys {
+    recordHotKeyFunction = NewEventHandlerUPP(recordHotKeyHandler);
+    EventTypeSpec eventType0;
+    eventType0.eventClass = kEventClassKeyboard;
+    eventType0.eventKind = kEventHotKeyReleased;
+    InstallApplicationEventHandler(recordHotKeyFunction, 1, &eventType0, (void *)CFBridgingRetain(self), NULL);
+    EventHotKeyRef theRef0;
+    EventHotKeyID keyID0;
+    keyID0.signature = 'a';
+    keyID0.id = 0;
+    RegisterEventHotKey(49, cmdKey+controlKey, keyID0, GetApplicationEventTarget(), 0, &theRef0);
 }
 
 - (void)killRecordProcesses {
-    NSString *sharedSupportPath = [[NSBundle mainBundle] resourcePath];
-    NSString *scriptName = @"kill_recorders";
-    NSString *scriptExtension = @"sh";
-    NSString *scriptAbsolutePath = [NSString stringWithFormat:@"%@/%@.%@", sharedSupportPath, scriptName, scriptExtension];
-    NSTask *task=[[NSTask alloc] init];
-    NSArray *argv=[NSArray arrayWithObjects:nil];
-    [task setArguments: argv];
-    [task setLaunchPath:scriptAbsolutePath];
-    [task launch];
+    NSLog(@"KILLLLLL THIS SHITTT");
+    [task terminate];
+//    NSString *sharedSupportPath = [[NSBundle mainBundle] resourcePath];
+//    NSString *scriptName = @"kill_recorders";
+//    NSString *scriptExtension = @"sh";
+//    NSString *scriptAbsolutePath = [NSString stringWithFormat:@"%@/%@.%@", sharedSupportPath, scriptName, scriptExtension];
+//    NSTask *task=[[NSTask alloc] init];
+//    NSArray *argv=[NSArray arrayWithObjects:nil];
+//    [task setArguments: argv];
+//    [task setLaunchPath:scriptAbsolutePath];
+//    [task launch];
 }
 
 @end

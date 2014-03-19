@@ -34,5 +34,6 @@ UInt32 currentFrame;
 UInt32 totalFrames;
 NSTimer *animTimer;
 NSTimer *timeElapsedTimer;
+bool recordBool;
 
 #endif

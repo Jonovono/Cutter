@@ -21,6 +21,7 @@
   currentFrame = 0;
   totalFrames = 8;
   animTimer = NULL;
+  recordBool = NO;
   return self;
 }
 
@@ -255,6 +256,17 @@ OSStatus historyRecordHotKeyHandler(EventHandlerCallRef nextHandler, EventRef an
 - (void)doQuit {
   [self cleanupOnBeforeQuit];
   [NSApp terminate:nil];
+}
+- (IBAction)recordToggle:(id)sender {
+    if (recordBool) {
+        NSLog(@"RECORDING");
+        [self killRecordProcesses];
+        recordBool = NO;
+    } else {
+        NSLog(@"YES");
+        [self launchRecordProcess];
+        recordBool = YES;
+    }
 }
 
 @end
