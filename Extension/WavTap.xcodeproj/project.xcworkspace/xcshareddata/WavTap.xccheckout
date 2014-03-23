@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AE59DAAD-F17F-40B7-94C8-25BCE0764BF6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WavTap</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>846F2769-79C3-4194-9526-F3F92145588C</key>
+		<string>ssh://github.com/pje/WavTap.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Extension/WavTap.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>846F2769-79C3-4194-9526-F3F92145588C</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/pje/WavTap.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>846F2769-79C3-4194-9526-F3F92145588C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>846F2769-79C3-4194-9526-F3F92145588C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WavTap</string>
+		</dict>
+	</array>
+</dict>
+</plist>
