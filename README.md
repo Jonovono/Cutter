@@ -14,3 +14,6 @@ AUDIO:
 - None
 
 These will be able to mixed and matched however you want.
+
+
+Most of this it seems can be accomplished with Monosnap. The difference is I want to also provide the ability to easily capture the system audio and upload to a public website! Other than that, monosnap is great!
