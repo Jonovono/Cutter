@@ -10,6 +10,7 @@
 #import "ScreenRecorder.h"
 #include <Carbon/Carbon.h>
 #include "Recorder.h"
+#include "UploadView.h"
 
 #define LogRect(RECT) NSLog(@"%s: (%0.0f, %0.0f) %0.0f x %0.0f", #RECT, RECT.origin.x, RECT.origin.y, RECT.size.width, RECT.size.height)
 
@@ -137,6 +138,11 @@
 - (IBAction)videoNoneSelected:(id)sender {
     currentVideo = 3;
     [self updateRecordingSelections];
+}
+
+- (IBAction)popupUploadView:(id)sender {
+    uploadView = [[UploadView alloc] init];
+    [uploadView showWindow:self];
 }
 
 

@@ -12,6 +12,8 @@
 #import <Carbon/Carbon.h>
 #import "Recorder.h"
 
+@class UploadView;
+
 @interface MainViewAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
     IBOutlet NSMenu *statusMenu;
@@ -23,6 +25,8 @@
     NSTask *task;
     NSWindow *overlayWindow;
     DrawMouseBoxView* drawMouseBoxView;
+    
+    UploadView *uploadView;
     
     NSRect selectionRect;
     
@@ -71,6 +75,7 @@
 
 - (IBAction)videoNoneSelected:(id)sender;
 
+- (IBAction)popupUploadView:(id)sender;
 
 @property (assign) IBOutlet NSWindow *window;
 @end

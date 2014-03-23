@@ -40,6 +40,8 @@
 		1737A59418D17270003B1787 /* ffmpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1737A59318D17270003B1787 /* ffmpeg */; };
 		174BE77C18D16B3B0072B158 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174BE77B18D16B3B0072B158 /* AVFoundation.framework */; };
 		17ED4BE518D92B35004A0D1B /* Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17ED4BE418D92B35004A0D1B /* Recorder.m */; };
+		17F41AC418DBAEFA00DF1A27 /* UploadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F41AC218DBAEFA00DF1A27 /* UploadView.m */; };
+		17F41AC518DBAEFA00DF1A27 /* UploadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17F41AC318DBAEFA00DF1A27 /* UploadView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,9 @@
 		174BE77B18D16B3B0072B158 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		17ED4BE318D92B35004A0D1B /* Recorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recorder.h; sourceTree = "<group>"; };
 		17ED4BE418D92B35004A0D1B /* Recorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recorder.m; sourceTree = "<group>"; };
+		17F41AC118DBAEFA00DF1A27 /* UploadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadView.h; sourceTree = "<group>"; };
+		17F41AC218DBAEFA00DF1A27 /* UploadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadView.m; sourceTree = "<group>"; };
+		17F41AC318DBAEFA00DF1A27 /* UploadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +252,9 @@
 				172AD82618D7730500524E8C /* DrawMouseBoxView.m */,
 				17ED4BE318D92B35004A0D1B /* Recorder.h */,
 				17ED4BE418D92B35004A0D1B /* Recorder.m */,
+				17F41AC118DBAEFA00DF1A27 /* UploadView.h */,
+				17F41AC218DBAEFA00DF1A27 /* UploadView.m */,
+				17F41AC318DBAEFA00DF1A27 /* UploadView.xib */,
 			);
 			path = Cutter;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 				172BE64B18C91CBD003DEBC5 /* InfoPlist.strings in Resources */,
 				170C5AE918D01CCA008D3543 /* record.sh in Resources */,
 				172BE65918C91CBD003DEBC5 /* Images.xcassets in Resources */,
+				17F41AC518DBAEFA00DF1A27 /* UploadView.xib in Resources */,
 				1737A59418D17270003B1787 /* ffmpeg in Resources */,
 				170C5AEA18D01CCA008D3543 /* sox in Resources */,
 				172BE65118C91CBD003DEBC5 /* Credits.rtf in Resources */,
@@ -395,6 +404,7 @@
 				170C5AEB18D01CCA008D3543 /* WavFileUtils.cpp in Sources */,
 				170C5AE518D01CCA008D3543 /* AudioTee.cpp in Sources */,
 				170C5AE318D01CCA008D3543 /* AppController.mm in Sources */,
+				17F41AC418DBAEFA00DF1A27 /* UploadView.m in Sources */,
 				172AD82718D7730500524E8C /* DrawMouseBoxView.m in Sources */,
 				17ED4BE518D92B35004A0D1B /* Recorder.m in Sources */,
 				172BE65418C91CBD003DEBC5 /* MainViewAppDelegate.m in Sources */,

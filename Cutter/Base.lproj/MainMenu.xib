@@ -652,6 +652,7 @@
                 <outlet property="audioNone" destination="RgH-ta-cIP" id="FQU-mg-Bak"/>
                 <outlet property="audioSpeaker" destination="UNp-jb-gw4" id="9UK-tk-Jbn"/>
                 <outlet property="currentlySelectedStatus" destination="Y95-Wd-nNh" id="g4q-7G-g0b"/>
+                <outlet property="popupUploadView" destination="Z6f-8m-hti" id="YUf-Up-8RU"/>
                 <outlet property="quitAppMenuButton" destination="lqs-3s-m9c" id="yqX-Mz-WyD"/>
                 <outlet property="recordToggle" destination="Kgb-jD-Et6" id="n1Y-gd-Zgl"/>
                 <outlet property="selectScreen" destination="PSO-bA-YA1" id="zbW-DR-RNe"/>
@@ -743,8 +744,11 @@
                 <menuItem isSeparatorItem="YES" id="scd-Ls-L8B"/>
                 <menuItem title="Popup" id="Z6f-8m-hti">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="popupUploadView:" target="494" id="RBA-dy-eUL"/>
+                    </connections>
                 </menuItem>
-                <menuItem title="Quit Clipper" id="lqs-3s-m9c">
+                <menuItem title="Quit Cutter" id="lqs-3s-m9c">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="quitApp:" target="494" id="Hdj-tz-40d"/>

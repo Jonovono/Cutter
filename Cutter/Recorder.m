@@ -142,7 +142,11 @@
 
 -(void)record {
     NSLog(@"IN QT ABOUT TO RECORD");
-    NSString *testOut = @"~/Desktop/greee.mov";
+    NSString *testOut = @"~/Desktop/Cuts/";
+    long timestamp = (long)[[NSDate date] timeIntervalSince1970];
+    NSString *ts = [NSString stringWithFormat:@"%ld.mov", timestamp];
+    
+    testOut = [testOut stringByAppendingString:ts];
     testOut = [testOut stringByExpandingTildeInPath];
     [movieFileOutput startRecordingToOutputFileURL:[NSURL fileURLWithPath:testOut] recordingDelegate:self];
 }
