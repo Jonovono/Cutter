@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
@@ -651,19 +651,27 @@
                 <outlet property="audioMicrophone" destination="47L-Ro-odj" id="fqS-Bl-fby"/>
                 <outlet property="audioNone" destination="RgH-ta-cIP" id="FQU-mg-Bak"/>
                 <outlet property="audioSpeaker" destination="UNp-jb-gw4" id="9UK-tk-Jbn"/>
+                <outlet property="currentlySelectedStatus" destination="Y95-Wd-nNh" id="g4q-7G-g0b"/>
+                <outlet property="popupUploadView" destination="Z6f-8m-hti" id="YUf-Up-8RU"/>
                 <outlet property="quitAppMenuButton" destination="lqs-3s-m9c" id="yqX-Mz-WyD"/>
                 <outlet property="recordToggle" destination="Kgb-jD-Et6" id="n1Y-gd-Zgl"/>
                 <outlet property="selectScreen" destination="PSO-bA-YA1" id="zbW-DR-RNe"/>
                 <outlet property="statusMenu" destination="qrl-dJ-GHb" id="Pu5-Ne-DBZ"/>
                 <outlet property="videoFullScreen" destination="Dxd-cD-azk" id="wSd-Ab-ccG"/>
                 <outlet property="videoNone" destination="xsL-ue-ula" id="ghO-Gg-tg2"/>
+                <outlet property="videoNoneSelected" destination="xsL-ue-ula" id="hGC-Wv-qR9"/>
                 <outlet property="videoScreenSelection" destination="Z4M-0Y-u3q" id="3cp-QZ-lBf"/>
                 <outlet property="videoWebcam" destination="keX-6v-R5T" id="PqQ-ej-r0B"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
+        <customObject id="pVK-qf-xH5" customClass="AppController"/>
         <menu id="qrl-dJ-GHb">
             <items>
+                <menuItem title="Internal / Webcam" id="Y95-Wd-nNh">
+                    <attributedString key="attributedTitle"/>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="Audio Input" id="nEt-Aa-N9D">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Audio Input" id="k2B-vP-OOp">
@@ -695,15 +703,27 @@
                         <items>
                             <menuItem title="Entire Screen" id="Dxd-cD-azk">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="videoEntireScreenSelected:" target="494" id="8uF-5W-ANh"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Screen Selection" id="Z4M-0Y-u3q">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="videoScreenSelectionSelected:" target="494" id="DYE-kL-RYQ"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Webcam" id="keX-6v-R5T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="videoWebcamSelected:" target="494" id="CmH-4K-Xcx"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="None" id="xsL-ue-ula">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="videoNoneSelected:" target="494" id="AUg-br-e29"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
@@ -717,9 +737,18 @@
                 </menuItem>
                 <menuItem title="Record" id="Kgb-jD-Et6">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="startRecording:" target="494" id="9Gd-DO-6tO"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="scd-Ls-L8B"/>
-                <menuItem title="Quit Clipper" id="lqs-3s-m9c">
+                <menuItem title="Popup" id="Z6f-8m-hti">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="popupUploadView:" target="494" id="RBA-dy-eUL"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit Cutter" id="lqs-3s-m9c">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="quitApp:" target="494" id="Hdj-tz-40d"/>
