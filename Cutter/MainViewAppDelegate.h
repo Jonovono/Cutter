@@ -11,8 +11,9 @@
 #import <QTKit/QTKit.h>
 #import <Carbon/Carbon.h>
 #import "Recorder.h"
+#import "UploadView.h"
 
-@class UploadView;
+//@class UploadView;
 
 @interface MainViewAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
@@ -46,6 +47,9 @@
 
 //Used to inform what is currently selected.
 @property (weak) IBOutlet NSMenuItem *currentlySelectedStatus;
+
+@property (strong) UploadView *upView;
+
 
 
 @property (weak) IBOutlet NSMenuItem *quitAppMenuButton;

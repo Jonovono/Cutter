@@ -742,7 +742,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="scd-Ls-L8B"/>
-                <menuItem title="Popup" id="Z6f-8m-hti">
+                <menuItem title="Upload to Cuts.io" id="Z6f-8m-hti">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="popupUploadView:" target="494" id="RBA-dy-eUL"/>

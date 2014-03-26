@@ -35,6 +35,9 @@
     [self bindHotKeys];
     [self initDefaults];
     
+//    self.upView = [[UploadView alloc]
+//                   initWithWindowNibName:@"UploadView"];
+    
 }
 
 
@@ -141,8 +144,26 @@
 }
 
 - (IBAction)popupUploadView:(id)sender {
-    uploadView = [[UploadView alloc] init];
-    [uploadView showWindow:self];
+
+    
+
+    
+//    [[myWindow window] makeMainWindow];
+//    NSLog(@"OPEn");
+    if (!uploadView) {
+        uploadView = [[UploadView alloc] init];
+    }
+    NSLog(@"VIEW %@", uploadView);
+//    [uploadView showWindow:self];
+    [[uploadView window] makeKeyAndOrderFront:self];
+    
+//    [self.window addChildWindow:uploadView ordered:NSWindowBelow];
+//    [uploadView.window makeKeyAndOrderFront:self];
+////    [uploadView showWindow:nil];
+}
+
+-(void)test {
+    NSLog(@"test");
 }
 
 

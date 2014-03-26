@@ -15,5 +15,24 @@ AUDIO:
 
 These will be able to mixed and matched however you want.
 
+# Warning
+- The kernel extension for recording the system audio has some bugs and is old. It works fine for me, but you may have issues.
+
+
+# Structure
+- Extension/ contains the kernel. This is copied from WavTap
+- Cutter/ contains the UI of the app and all the functions to start recording, etc
+
+# TODO
+- Pause / continue recording
+- Fix issues with recording system audio
+- Some bugs that happen when you try to screen select too many times
+- A PKG builder
+- Gif maker
+- Auto subtitle video option
+- Better upload form (upload older vids)
+- See previews / edit clips
+
+
 
 Most of this it seems can be accomplished with Monosnap. The difference is I want to also provide the ability to easily capture the system audio and upload to a public website! Other than that, monosnap is great!
