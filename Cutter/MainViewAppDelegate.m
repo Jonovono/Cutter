@@ -21,6 +21,7 @@
 
 -(void)awakeFromNib {
     [self createCutsDesktopFolder];
+    
     recording = NO;
     
     // INIT the arrays
@@ -145,17 +146,19 @@
 
 - (IBAction)popupUploadView:(id)sender {
 
-    
+    UploadView *view = [[UploadView alloc] initWithWindowNibName:@"UploadView"];
+    [view showWindow:self];
 
     
 //    [[myWindow window] makeMainWindow];
 //    NSLog(@"OPEn");
-    if (!uploadView) {
-        uploadView = [[UploadView alloc] init];
-    }
-    NSLog(@"VIEW %@", uploadView);
-//    [uploadView showWindow:self];
-    [[uploadView window] makeKeyAndOrderFront:self];
+//    if (!self.upView) {
+//        self.upView = [[UploadView alloc] init];
+//    }
+    NSLog(@"VIEW %@", self.upView);
+//    [self.upView showWindow:self];
+//    [self.upView.window makeKeyAndOrderFront:self];
+//    [[uploadView window] makeKeyAndOrderFront:self];
     
 //    [self.window addChildWindow:uploadView ordered:NSWindowBelow];
 //    [uploadView.window makeKeyAndOrderFront:self];

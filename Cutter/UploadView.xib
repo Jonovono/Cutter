@@ -14,6 +14,7 @@
                 <outlet property="clipTitle" destination="Wwl-4z-eq2" id="Or6-kh-5oP"/>
                 <outlet property="tabBarType" destination="vui-KZ-hUZ" id="Ahw-az-cHc"/>
                 <outlet property="tabView" destination="vui-KZ-hUZ" id="yGU-Et-QZd"/>
+                <outlet property="window" destination="rZi-hw-Qba" id="gFD-kr-Sbn"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
