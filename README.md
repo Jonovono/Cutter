@@ -63,3 +63,7 @@ Most of this it seems can be accomplished with Monosnap. The difference is I wan
 
 # License
 Feel free to do whatever you wish with the code. This will be open source forever. Let's give it an MIT.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Jonovono/cutter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
