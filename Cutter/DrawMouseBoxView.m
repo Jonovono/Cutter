@@ -47,7 +47,6 @@
  */
 
 #import "DrawMouseBoxView.h"
-#import "ScreenRecorder.h"
 
 #define LogRect(RECT) NSLog(@"%s: (%0.0f, %0.0f) %0.0f x %0.0f", #RECT, RECT.origin.x, RECT.origin.y, RECT.size.width, RECT.size.height)
 
@@ -57,7 +56,6 @@
 	NSPoint _mouseDownPoint;
 	NSRect _selectionRect;
     BOOL recording;
-    ScreenRecorder *recorder;
     CGRect globalRect;
     NSWindow *controlWindow;
     BOOL selectionSet;
@@ -79,7 +77,6 @@
 - (void)mouseDown:(NSEvent *)theEvent
 {
     if (controlWindow) {
-//        [controlWindow close];
         [selectionSetRecordButton setHidden:YES];
     }
 	_mouseDownPoint = [theEvent locationInWindow];
@@ -118,7 +115,7 @@
     selectionSetRecordButton = [[NSButton alloc] initWithFrame: frame];
     selectionSetRecordButton.bezelStyle = NSRoundedBezelStyle;
     [selectionSetRecordButton setTitle:@"Set Selection"];
-//
+
     int wl = CGShieldingWindowLevel();
     NSRect wr = [[NSScreen mainScreen] frame];
     wr.size.height = buttonHeight;
@@ -170,30 +167,9 @@
     } else if ([title isEqualToString:@"Close"]) {
         [self closeOverlay];
     }
-
-//    [self setNeedsDisplayInRect:globalRect];
-
-//    if (!recorder) {
-//        recorder = [[ScreenRecorder alloc] initWithRect: globalRect];
-//    }
-    
-//    if (recording) {
-//        NSLog(@"Stop recording");
-//         [recorder stop];
-//        recording = NO;
-//    } else {
-//        NSLog(@"Begin recording");
-//        recording = YES;
-//        [recorder start];
-//    }
-    
-    //Do what You want here...
 }
 
 -(void)closeOverlay {
-//    NSWindow *win =  [self window];
-//    [win.contentView views]
-//    [win close];
     [self makeOverlayNotClickThrough];
         [self.delegate doneDoingStuff];
     [controlWindow close];

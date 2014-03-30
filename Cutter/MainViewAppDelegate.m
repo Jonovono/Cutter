@@ -3,11 +3,10 @@
 //  Cutter
 //
 //  Created by Jordan Howlett on 06/03/2014.
-//  Copyright (c) 2014 Jordan Howlett. All rights reserved.
+// GPL
 //
 
 #import "MainViewAppDelegate.h"
-#import "ScreenRecorder.h"
 #include <Carbon/Carbon.h>
 #include "Recorder.h"
 #include "UploadView.h"
@@ -15,13 +14,14 @@
 #define LogRect(RECT) NSLog(@"%s: (%0.0f, %0.0f) %0.0f x %0.0f", #RECT, RECT.origin.x, RECT.origin.y, RECT.size.width, RECT.size.height)
 
 @implementation MainViewAppDelegate
+@synthesize window = _window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {}
 
 -(void)awakeFromNib {
     [self createCutsDesktopFolder];
-    
+
     recording = NO;
     
     // INIT the arrays
@@ -35,10 +35,6 @@
     [self setupStatusBar];
     [self bindHotKeys];
     [self initDefaults];
-    
-//    self.upView = [[UploadView alloc]
-//                   initWithWindowNibName:@"UploadView"];
-    
 }
 
 
@@ -54,9 +50,9 @@
     DrawMouseBoxView *tempWind;
     
     //    windowRect.size.height = windowRect.size.height - 20;
+    
+//    This is causing me some issues. Seems like it will crash if you call it too many times.
     if (overlayWindow) {
-        NSLog(@"OVERLAY ALREADY DEFINED");
-        NSLog(@"OV: %@", overlayWindow);
         [overlayWindow makeKeyAndOrderFront:self];
         tempWind = [[DrawMouseBoxView alloc] initWithFrame:windowRect];
         tempWind.delegate = self;
@@ -84,23 +80,6 @@
     drawMouseBoxView.delegate = self;
     [overlayWindow setContentView:drawMouseBoxView];
     }
-}
-
-#define kShadyWindowLevel   (NSDockWindowLevel + 1000)
-
-- (void)doneDoingStuff {
-//    [overlayWindow close];
-    [overlayWindow orderOut:self];
-//    [overlayWindow performClose:nil];
-//    drawMouseBoxView = NULL;
-//    overlayWindow = NULL;
-//        NSLog(@"OVERLAY %@", overlayWindow);
-    
-//    for (NSWindow* w in [NSApp windows])
-//	{
-//		if ([w level] == kShadyWindowLevel)
-//			[w close];
-//	}
 }
 
 - (void)drawMouseBoxView:(DrawMouseBoxView*)view didSelectRect:(NSRect)rect {
@@ -145,33 +124,15 @@
 }
 
 - (IBAction)popupUploadView:(id)sender {
-
-    UploadView *view = [[UploadView alloc] initWithWindowNibName:@"UploadView"];
-    [view showWindow:self];
-
-    
-//    [[myWindow window] makeMainWindow];
-//    NSLog(@"OPEn");
-//    if (!self.upView) {
-//        self.upView = [[UploadView alloc] init];
-//    }
-    NSLog(@"VIEW %@", self.upView);
-//    [self.upView showWindow:self];
-//    [self.upView.window makeKeyAndOrderFront:self];
-//    [[uploadView window] makeKeyAndOrderFront:self];
-    
-//    [self.window addChildWindow:uploadView ordered:NSWindowBelow];
-//    [uploadView.window makeKeyAndOrderFront:self];
-////    [uploadView showWindow:nil];
-}
-
--(void)test {
-    NSLog(@"test");
+    [NSApp activateIgnoringOtherApps:YES];
+    if (!self.upView) {
+        self.upView = [[UploadView alloc] init];
+    }
+    [self.upView showWindow:self];
 }
 
 
 -(void)record {
-    LogRect(selectionRect);
     if (currentVideo == 1) {
         recorder = [[Recorder alloc] initWithAudio:currentAudio andVideo:currentVideo andScreenRect:selectionRect];
     } else {
@@ -188,9 +149,11 @@
     if (recording) {
         recording = NO;
         [self stopRecording];
+        self.recordToggle.title = @"Record";
     } else {
         recording = YES;
         [self record];
+        self.recordToggle.title = @"Stop Recording";
     }
 }
 
@@ -206,62 +169,6 @@
     }
 }
 
--(void) runScript:(NSString*)name
-{
-//    NSTask *task;
-//    task = [[NSTask alloc] init];
-//    [task setLaunchPath: @"/bin/sh"];
-//    
-//    NSArray *arguments;
-//    NSString* newpath = [NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] privateFrameworksPath], scriptName];
-//    NSLog(@"shell script path: %@",newpath);
-//    arguments = [NSArray arrayWithObjects:newpath, nil];
-//    [task setArguments: arguments];
-//    
-//    NSPipe *pipe;
-//    pipe = [NSPipe pipe];
-//    [task setStandardOutput: pipe];
-//    
-//    NSFileHandle *file;
-//    file = [pipe fileHandleForReading];
-//    
-//    [task launch];
-//    
-//    NSData *data;
-//    data = [file readDataToEndOfFile];
-//    
-//    NSString *string;
-//    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-//    NSLog (@"script returned:\n%@", string);
-
-    NSString *sharedSupportPath = [[NSBundle mainBundle] resourcePath];
-    NSLog(@"PATH %@", sharedSupportPath);
-    NSString *scriptName = @"ffmpeg";
-    NSString *scriptExtension = @"sh";
-    NSString *scriptAbsPath = [NSString stringWithFormat:@"%@/%@", sharedSupportPath, scriptName];
-//    NSString *bits = [NSString stringWithFormat:@"%d", mEngine->mOutputDevice.getStreamPhysicalBitDepth(false)];
-    NSTask *task=[[NSTask alloc] init];
-//    NSArray *argv=[NSArray arrayWithObject:bits];
-    
-    //    ffmpeg -i TestRecording-20140363110156.mov -i 1393956048.wav -vcodec copy out.mov
-    
-    
-        NSString *testPath = [NSString stringWithFormat:@"%@/%@", sharedSupportPath, @"test.mov"];
-            NSString *testWav = [NSString stringWithFormat:@"%@/%@", sharedSupportPath, @"test.wav"];
-            NSString *testOut = @"~/Desktop/output.mov";
-    testOut = [testOut stringByExpandingTildeInPath];
-    NSLog(@"********************* %@", testOut);
-    NSError *err = nil;
-    NSString *outFile = [NSString stringWithContentsOfFile:testOut encoding:NSUTF8StringEncoding error:&err];
-    NSLog(@"tESTETTEET %@", outFile);
-
-    [task setArguments:@[@"-i", testPath, @"-i", testWav, @"-vcodec", @"copy", testOut]];
-//    [task setArguments: argv];
-    [task setLaunchPath:scriptAbsPath];
-    [task launch];
-
-
-}
 
 
 -(void)createCutsDesktopFolder {
@@ -360,8 +267,7 @@
 //    //[task setArguments: argv];
 //    [task setLaunchPath:scriptAbsPath];
 //    [task launch];
-    
-    NSLog(@"KILLEM");
+
 
     NSString *sharedSupportPath = [[NSBundle mainBundle] resourcePath];
     NSString *scriptName = @"sox";
@@ -415,12 +321,12 @@
 
 OSStatus recordHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) {
     MainViewAppDelegate* inUserData = (__bridge MainViewAppDelegate*)userData;
-    [inUserData poop];
+    [inUserData callTheRecorder];
     return noErr;
 }
 
--(void)poop {
-    NSLog(@"poop");
+-(void)callTheRecorder {
+    NSLog(@"Shortcut to call the recorder");
 }
 
 
@@ -438,17 +344,66 @@ OSStatus recordHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, 
 }
 
 - (void)killRecordProcesses {
-    NSLog(@"KILLLLLL THIS SHITTT");
     [task terminate];
-//    NSString *sharedSupportPath = [[NSBundle mainBundle] resourcePath];
-//    NSString *scriptName = @"kill_recorders";
-//    NSString *scriptExtension = @"sh";
-//    NSString *scriptAbsolutePath = [NSString stringWithFormat:@"%@/%@.%@", sharedSupportPath, scriptName, scriptExtension];
-//    NSTask *task=[[NSTask alloc] init];
-//    NSArray *argv=[NSArray arrayWithObjects:nil];
-//    [task setArguments: argv];
-//    [task setLaunchPath:scriptAbsolutePath];
-//    [task launch];
 }
 
 @end
+
+
+
+//-(void) runScript:(NSString*)name
+//{
+    //    NSTask *task;
+    //    task = [[NSTask alloc] init];
+    //    [task setLaunchPath: @"/bin/sh"];
+    //
+    //    NSArray *arguments;
+    //    NSString* newpath = [NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] privateFrameworksPath], scriptName];
+    //    NSLog(@"shell script path: %@",newpath);
+    //    arguments = [NSArray arrayWithObjects:newpath, nil];
+    //    [task setArguments: arguments];
+    //
+    //    NSPipe *pipe;
+    //    pipe = [NSPipe pipe];
+    //    [task setStandardOutput: pipe];
+    //
+    //    NSFileHandle *file;
+    //    file = [pipe fileHandleForReading];
+    //
+    //    [task launch];
+    //
+    //    NSData *data;
+    //    data = [file readDataToEndOfFile];
+    //
+    //    NSString *string;
+    //    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    //    NSLog (@"script returned:\n%@", string);
+    
+//    NSString *sharedSupportPath = [[NSBundle mainBundle] resourcePath];
+//    NSLog(@"PATH %@", sharedSupportPath);
+//    NSString *scriptName = @"ffmpeg";
+//    NSString *scriptExtension = @"sh";
+//    NSString *scriptAbsPath = [NSString stringWithFormat:@"%@/%@", sharedSupportPath, scriptName];
+    //    NSString *bits = [NSString stringWithFormat:@"%d", mEngine->mOutputDevice.getStreamPhysicalBitDepth(false)];
+//    NSTask *task=[[NSTask alloc] init];
+    //    NSArray *argv=[NSArray arrayWithObject:bits];
+    
+    //    ffmpeg -i TestRecording-20140363110156.mov -i 1393956048.wav -vcodec copy out.mov
+    
+    
+//    NSString *testPath = [NSString stringWithFormat:@"%@/%@", sharedSupportPath, @"test.mov"];
+//    NSString *testWav = [NSString stringWithFormat:@"%@/%@", sharedSupportPath, @"test.wav"];
+//    NSString *testOut = @"~/Desktop/output.mov";
+//    testOut = [testOut stringByExpandingTildeInPath];
+//    NSLog(@"********************* %@", testOut);
+//    NSError *err = nil;
+//    NSString *outFile = [NSString stringWithContentsOfFile:testOut encoding:NSUTF8StringEncoding error:&err];
+//    NSLog(@"tESTETTEET %@", outFile);
+//    
+//    [task setArguments:@[@"-i", testPath, @"-i", testWav, @"-vcodec", @"copy", testOut]];
+//    //    [task setArguments: argv];
+//    [task setLaunchPath:scriptAbsPath];
+//    [task launch];
+//    
+//    
+//}

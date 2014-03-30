@@ -3,7 +3,7 @@
 //  Cutter
 //
 //  Created by Jordan Howlett on 06/03/2014.
-//  Copyright (c) 2014 Jordan Howlett. All rights reserved.
+// GPL
 //
 
 #import <Cocoa/Cocoa.h>
@@ -26,6 +26,8 @@
     NSTask *task;
     NSWindow *overlayWindow;
     DrawMouseBoxView* drawMouseBoxView;
+    
+    IBOutlet NSPanel *theSheet;
     
     UploadView *uploadView;
     

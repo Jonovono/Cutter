@@ -21,7 +21,6 @@
 		170C5AF318D01D44008D3543 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172BE64318C91CBD003DEBC5 /* AppKit.framework */; };
 		170C5AFB18D02064008D3543 /* CARingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 170C5AF918D02064008D3543 /* CARingBuffer.cpp */; };
 		170C5AFC18D02144008D3543 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170C5AEE18D01D24008D3543 /* CoreAudio.framework */; };
-		172AD82418D772D800524E8C /* ScreenRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 172AD82318D772D800524E8C /* ScreenRecorder.m */; };
 		172AD82718D7730500524E8C /* DrawMouseBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 172AD82618D7730500524E8C /* DrawMouseBoxView.m */; };
 		172AD82918D798AF00524E8C /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172AD82818D798AF00524E8C /* QTKit.framework */; };
 		172AD83518D8F5E700524E8C /* cutter.png in Resources */ = {isa = PBXBuildFile; fileRef = 172AD83418D8F5E700524E8C /* cutter.png */; };
@@ -76,8 +75,6 @@
 		170C5AF818D02064008D3543 /* CABitOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABitOperations.h; sourceTree = "<group>"; };
 		170C5AF918D02064008D3543 /* CARingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CARingBuffer.cpp; sourceTree = "<group>"; };
 		170C5AFA18D02064008D3543 /* CARingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CARingBuffer.h; sourceTree = "<group>"; };
-		172AD82218D772D800524E8C /* ScreenRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenRecorder.h; sourceTree = "<group>"; };
-		172AD82318D772D800524E8C /* ScreenRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenRecorder.m; sourceTree = "<group>"; };
 		172AD82518D7730500524E8C /* DrawMouseBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawMouseBoxView.h; sourceTree = "<group>"; };
 		172AD82618D7730500524E8C /* DrawMouseBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawMouseBoxView.m; sourceTree = "<group>"; };
 		172AD82818D798AF00524E8C /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
@@ -246,8 +243,6 @@
 				172BE65518C91CBD003DEBC5 /* MainMenu.xib */,
 				172BE65818C91CBD003DEBC5 /* Images.xcassets */,
 				172BE64718C91CBD003DEBC5 /* Supporting Files */,
-				172AD82218D772D800524E8C /* ScreenRecorder.h */,
-				172AD82318D772D800524E8C /* ScreenRecorder.m */,
 				172AD82518D7730500524E8C /* DrawMouseBoxView.h */,
 				172AD82618D7730500524E8C /* DrawMouseBoxView.m */,
 				17ED4BE318D92B35004A0D1B /* Recorder.h */,
@@ -408,7 +403,6 @@
 				172AD82718D7730500524E8C /* DrawMouseBoxView.m in Sources */,
 				17ED4BE518D92B35004A0D1B /* Recorder.m in Sources */,
 				172BE65418C91CBD003DEBC5 /* MainViewAppDelegate.m in Sources */,
-				172AD82418D772D800524E8C /* ScreenRecorder.m in Sources */,
 				170C5AE618D01CCA008D3543 /* CARingBuffer.cpp in Sources */,
 				170C5AE418D01CCA008D3543 /* AudioDevice.cpp in Sources */,
 				172BE64D18C91CBD003DEBC5 /* main.m in Sources */,

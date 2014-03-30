@@ -15,25 +15,19 @@
 -(id)init {
     NSArray *audioDevices = [[NSArray alloc] initWithArray:[AVCaptureDevice devicesWithMediaType:AVMediaTypeAudio]];
     AVCaptureDevice *wavTapDevice;
-//
-//    
+    
     for (AVCaptureDevice * dev in audioDevices) {
         NSString *name = [dev localizedName];
         if ([name isEqualToString:@"WavTap"]) {
             wavTapDevice = dev;
         }
     }
-//
-//    NSLog(@"DEVICE %@", wavTapDevice);
-    
     
     return self;
 }
 
 
 -(id)initWithAudio:(int)audio andVideo:(int)video andScreenRect:(NSRect)rect{
-    NSLog(@"GOING TO INIT THIS");
-    LogRect(rect);
     BOOL success;
     NSError* error;
     
@@ -116,20 +110,6 @@
         [session addInput:screenDevice];
     }
     
-    //    For screen selection
-    //    mCaptureScreenInput = [[NSClassFromString(@"QTCaptureScreenInput") alloc] init];
-    //    success = [session addInput:mCaptureScreenInput error:&error];
-    
-    
-//    audioDevice = [AVCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeSound];
-//    [audioDevice open];
-    //    //
-//    audioDeviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:audioDevice];
-//    [session addInput:audioDeviceInput];
-    //    //    NSLog(@"ERROR %@", [error localizedDescription]);
-    //    //    NSLog(@"DEVICE %@", audioDevice);
-    
-    
     [session commitConfiguration];
     [session startRunning];
     return self;
@@ -141,7 +121,6 @@
 }
 
 -(void)record {
-    NSLog(@"IN QT ABOUT TO RECORD");
     NSString *testOut = @"~/Desktop/Cuts/";
     long timestamp = (long)[[NSDate date] timeIntervalSince1970];
     NSString *ts = [NSString stringWithFormat:@"%ld.mov", timestamp];

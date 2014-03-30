@@ -23,15 +23,6 @@
     return self;
 }
 
-//- (id)initWithWindow:(NSWindow *)window
-//{
-//    self = [super initWithWindow:window];
-//    if (self) {
-//        // Initialization code here.
-//    }
-//    return self;
-//}
-
 - (void)windowDidLoad
 {
     [super windowDidLoad];
@@ -60,18 +51,15 @@
     testOut = [testOut stringByExpandingTildeInPath];
     NSLog(@"PATH %@", testOut);
     
-    NSString *args = @"term_in=201320&poop=test";
+    NSString *theFile = [self getLastCreatedVideo];
     
     NSString *dat = [[NSString alloc] initWithFormat:@"title=%@&description=%@&type=%@&movie=%@&tvshow=%@&season=%@&episode=%@", title, description, type, movie, tvShow, season, episode];
-    NSLog(@"data %@", dat);
-    
     
     
     //    TRYING TO POST
-    NSLog(@"COMEON");
-    NSString *urlString = @"http://localhost:3000/upload";
+    NSString *urlString = @"http://cuts.io/upload";
     NSString *filename = @"small.mov";
-    NSData *data = [[NSData alloc] initWithContentsOfFile:testOut];
+    NSData *data = [[NSData alloc] initWithContentsOfFile:theFile];
     NSMutableURLRequest *request= [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
@@ -93,10 +81,45 @@
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPBody:postbody];
     
-    NSLog(@"REQUEST %@", [request description]);
-    
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     NSLog(@"GOT HERE %@", returnString);
 }
+
+-(NSString *)getLastCreatedVideo {
+    
+    NSString *cutsDir = @"~/Desktop/Cuts/";
+    cutsDir = [cutsDir stringByExpandingTildeInPath];
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSURL *url = [[NSURL alloc] initWithString:cutsDir];
+    
+    
+    NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:url
+                                                              includingPropertiesForKeys:@[NSURLContentModificationDateKey]
+                                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                   error:nil];
+    
+    NSArray *sortedContent = [directoryContent sortedArrayUsingComparator:
+                              ^(NSURL *file1, NSURL *file2)
+                              {
+                                  // compare
+                                  NSDate *file1Date;
+                                  [file1 getResourceValue:&file1Date forKey:NSURLContentModificationDateKey error:nil];
+                                  
+                                  NSDate *file2Date;
+                                  [file2 getResourceValue:&file2Date forKey:NSURLContentModificationDateKey error:nil];
+                                  
+                                  // Ascending:
+                                  return [file1Date compare: file2Date];
+                                  // Descending:
+                                  //return [file2Date compare: file1Date];
+                              }];
+    NSLog(@"DATA %@", sortedContent);
+    
+    NSString *current = [sortedContent objectAtIndex:[sortedContent count]-1];
+    NSLog(@"LAST %@", current);
+    return current;
+}
+
 @end
