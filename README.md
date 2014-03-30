@@ -26,6 +26,9 @@ To install:
 Uninstall:
 - sudo make uninstall
 
+# About
+- This makes use of an older open source project to record system audio. WavTap. As such, it has some bugs and I hope to hire someone to help me fix them up in the future. For right now it seems to work for me (Mavericks). 
+
 
 # Warning / Bugs / Use at your own risk (for now)
 - This may be some of the worst Obj-C you have seen? Made this while learning it so if you see improvements please submit pull request.
