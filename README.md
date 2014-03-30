@@ -15,8 +15,14 @@ AUDIO:
 
 These will be able to mixed and matched however you want.
 
-# Warning
+# Warning / Bugs
+- This may be some of the worst Obj-C you have seen? Made this while learning it so if you see improvements please submit pull request.
 - The kernel extension for recording the system audio has some bugs and is old. It works fine for me, but you may have issues.
+- When doing selection screen recordings, there is a bug I have not figured out yet. It seems to crash if opening the select screen multiple times?
+
+
+# Fixes
+- If you notice your speakers not outputting sound anymore simply: System Preferences -> Sound -> Internal Speakers. If you want to then try using Cutter again do the previous with Cutter closed and then open it. Hopefully that works.
 
 
 # Structure
@@ -34,5 +40,7 @@ These will be able to mixed and matched however you want.
 - See previews / edit clips
 
 
-
 Most of this it seems can be accomplished with Monosnap. The difference is I want to also provide the ability to easily capture the system audio and upload to a public website! Other than that, monosnap is great!
+
+# License
+Feel free to do whatever you wish with the code. This will be open source forever. Let's give it an MIT.
