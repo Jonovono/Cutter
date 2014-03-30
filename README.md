@@ -15,7 +15,19 @@ AUDIO:
 
 These will be able to mixed and matched however you want.
 
-# Warning / Bugs
+
+# Installation 
+
+Right now there is only a makefile. In the future I will put together a pkg installer. I just have not learnt how to do that yet. So if you feel like assisting, do let me know.
+
+To install:
+- sudo make install
+
+Uninstall:
+- sudo make uninstall
+
+
+# Warning / Bugs / Use at your own risk (for now)
 - This may be some of the worst Obj-C you have seen? Made this while learning it so if you see improvements please submit pull request.
 - The kernel extension for recording the system audio has some bugs and is old. It works fine for me, but you may have issues.
 - When doing selection screen recordings, there is a bug I have not figured out yet. It seems to crash if opening the select screen multiple times?
@@ -41,6 +53,10 @@ These will be able to mixed and matched however you want.
 
 
 Most of this it seems can be accomplished with Monosnap. The difference is I want to also provide the ability to easily capture the system audio and upload to a public website! Other than that, monosnap is great!
+
+
+# Feedback / Contact
+- If you need to reach me for any reason please email: jordan@howlett.io or submit an issue.
 
 # License
 Feel free to do whatever you wish with the code. This will be open source forever. Let's give it an MIT.
