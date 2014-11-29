@@ -34,7 +34,11 @@ Uninstall:
 - This may be some of the worst Obj-C you have seen? Made this while learning it so if you see improvements please submit pull request.
 - The kernel extension for recording the system audio has some bugs and is old. It works fine for me, but you may have issues.
 - When doing selection screen recordings, there is a bug I have not figured out yet. It seems to crash if opening the select screen multiple times?
+- 
+# YO YO YOSEMITE ISSUE
+The kext is not signed which apple needs so to get around that run:
 
+    sudo nvram boot-args="debug=0x146 kext-dev-mode=1" in your terminal and then restart your computer and try the installation again!
 
 # Fixes
 - If you notice your speakers not outputting sound anymore simply: System Preferences -> Sound -> Internal Speakers. If you want to then try using Cutter again do the previous with Cutter closed and then open it. Hopefully that works.
